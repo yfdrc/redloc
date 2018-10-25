@@ -41,7 +41,7 @@
             android:enabled="true"
             android:process=":remote" />
         <service
-            android:name=".BAK.DrcLocateService"
+            android:name="com.drc.tools.Service.LocateService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
@@ -56,7 +56,7 @@
         </receiver>
 
         <service
-            android:name=".tools.LongRunningService"
+            android:name="com.drc.tools.Service.LongRunningService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />

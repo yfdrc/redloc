@@ -1,4 +1,4 @@
-package com.drc.redloc.tools;
+package com.drc.tools.Service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.IBinder;
 import android.os.SystemClock;
-import android.util.Log;
+
+import com.drc.tools.Common.Common;
+import com.drc.tools.Common.DrcLocation;
 
 public class LongRunningService extends Service {
-    private final static String TAG = "DrcLongRunningService";
+    private final static String TAG = "LongRunningService";
 
     private final static int MIN10 = 1000 * 60 * 10;
     private final static int MIN60 = 1000 * 60 * 60;
@@ -34,11 +36,9 @@ public class LongRunningService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Common.acquireWakeLock(getBaseContext());
                 drcLocation = new DrcLocation();
                 drcLocation.start(getBaseContext());
                 drcLocation.requestLocation();
-                Common.releaseWakeLock();
             }
         }).start();
 

@@ -1,4 +1,4 @@
-package com.drc.redloc.base;
+package com.drc.tools.Base;
 
 import android.app.Activity;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 
 public class BaseActivityAll {
     private static final String TAG = "BaseActivityAll";
+
     public static List<Activity> activities = new ArrayList<>();
 
     public static void addActivity(Activity activity) {

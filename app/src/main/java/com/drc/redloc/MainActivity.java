@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.drc.redloc.tools.Common;
-import com.drc.redloc.tools.LongRunningService;
+import com.drc.tools.Common.Common;
+import com.drc.tools.Service.LongRunningService;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "DrcMainActivity";

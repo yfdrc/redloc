@@ -1,8 +1,7 @@
-package com.drc.redloc.tools;
+package com.drc.tools.Common;
 
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
-import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.File;

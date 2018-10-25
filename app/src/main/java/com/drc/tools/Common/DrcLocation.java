@@ -1,4 +1,4 @@
-package com.drc.redloc.tools;
+package com.drc.tools.Common;
 
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
@@ -9,7 +9,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.drc.redloc.base.BaseApplication;
+import com.drc.tools.Base.BaseApplication;
 
 import java.util.Date;
 

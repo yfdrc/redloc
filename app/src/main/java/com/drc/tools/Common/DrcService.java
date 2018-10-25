@@ -1,4 +1,4 @@
-package com.drc.redloc.base;
+package com.drc.tools.Common;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,19 +6,19 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-public class BaseService extends Service {
-    private static final String TAG = "BaseService";
-    private BaseBinder basebinder = new BaseBinder();
+public class DrcService extends Service {
+    private static final String TAG = "DrcService";
+    private Downloadbinder downloadbinder = new Downloadbinder();
 
-    public BaseService() {
+    public DrcService() {
     }
 
-    protected class BaseBinder extends Binder {
-        public void startDownload() {
+   protected class Downloadbinder extends Binder{
+        public void startDownload(){
             Log.i(TAG, "startDownload: ok");
         }
 
-        public int getProgress() {
+        public int getProgress(){
             Log.i(TAG, "getProgress: ok");
             return 0;
         }
@@ -51,7 +51,7 @@ public class BaseService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind: ok");
-        return basebinder;
+        return downloadbinder;
     }
 
     @Override

@@ -1,26 +1,27 @@
-package com.drc.redloc.BAK;
+package com.drc.tools.Service;
 
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import com.drc.redloc.tools.DrcLocation;
 
-public class DrcLocateService extends Service {
-    private final static String TAG = "DrcLocateService";
+import com.drc.tools.Common.DrcLocation;
+
+public class LocateService extends Service {
+    private final static String TAG = "LocateService";
 
     private DrcLocation drcLocation = new DrcLocation();
 
     public static void Drcstart(Context context) {
         //Log.i(TAG, "startService: ok");
-        Intent serStart = new Intent(context, DrcLocateService.class);
+        Intent serStart = new Intent(context, LocateService.class);
         context.startService(serStart);
     }
 
     public static void Drcstop(Context context) {
         //Log.i(TAG, "stopService: ok");
-        Intent serStop = new Intent(context, DrcLocateService.class);
+        Intent serStop = new Intent(context, LocateService.class);
         context.stopService(serStop);
     }
 
