@@ -1,4 +1,4 @@
-package com.drc.tools.Common;
+package com.drc.tools.FileSystem;
 
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
@@ -7,13 +7,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.Date;
+import java.util.Properties;
 
 import it.sauronsoftware.ftp4j.FTPClient;
 
 public class DrcFilesystem {
-    private final static String TAG = "DrcFilesystem";
+    private final static String TAG = "Filesystem";
 
     private static int mupcs = 0;
     private static String mfilename = "";
@@ -26,6 +28,17 @@ public class DrcFilesystem {
         return "/sdcard/";
     }
 
+    public static Properties getFSConfigProperties() {
+        Properties properties = new Properties();
+        InputStream in = DrcFilesystem.class.getResourceAsStream("/assets/App.properties");
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
+
     public static void SaveAndSend(final Context context, String nr) {
         mupcs++;
         SimpleDateFormat df = new SimpleDateFormat("dd");
@@ -35,11 +48,11 @@ public class DrcFilesystem {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String url = Common.getFSConfigProperties().getProperty("Url");
-                    String username = Common.getFSConfigProperties().getProperty("UserName");
-                    String password = Common.getFSConfigProperties().getProperty("PassWord");
+                    String url = getFSConfigProperties().getProperty("Url");
+                    String username = getFSConfigProperties().getProperty("UserName");
+                    String password = getFSConfigProperties().getProperty("PassWord");
                     String srcpath = getPkPath(context);
-                    String decpath = Common.getFSConfigProperties().getProperty("Dpath");
+                    String decpath = getFSConfigProperties().getProperty("Dpath");
                     DrcFilesystem.FtpPutFile(url, username, password, srcpath, decpath, mfilename);
                 }
             }).start();

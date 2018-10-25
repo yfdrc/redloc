@@ -9,7 +9,6 @@ import android.icu.util.Calendar;
 import android.os.IBinder;
 import android.os.SystemClock;
 
-import com.drc.tools.Common.Common;
 import com.drc.tools.Common.DrcLocation;
 
 public class LongRunningService extends Service {

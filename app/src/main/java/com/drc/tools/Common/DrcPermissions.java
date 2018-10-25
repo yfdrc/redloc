@@ -14,19 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Common {
-    private final static String TAG = "Common";
-
-    public static Properties getFSConfigProperties() {
-        Properties properties = new Properties();
-        InputStream in = Common.class.getResourceAsStream("/assets/App.properties");
-        try {
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
-    }
+public class DrcPermissions {
+    private final static String TAG = "DrcPermissions";
 
     public static String[] getPermissions(Context context) {
         String[] perms;

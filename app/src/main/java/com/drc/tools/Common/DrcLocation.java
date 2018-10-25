@@ -10,6 +10,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.drc.tools.Base.BaseApplication;
+import com.drc.tools.FileSystem.DrcFilesystem;
 
 import java.util.Date;
 

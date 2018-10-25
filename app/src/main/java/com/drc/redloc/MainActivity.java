@@ -7,7 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.drc.tools.Common.Common;
+import com.drc.tools.Common.DrcPermissions;
 import com.drc.tools.Service.LongRunningService;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         //Log.i(TAG, "onCreate:ok");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] perms = Common.getPermissions(this);
+        String[] perms = DrcPermissions.getPermissions(this);
         if (perms != null) {
             ActivityCompat.requestPermissions(this, perms, RCODE);
         }
