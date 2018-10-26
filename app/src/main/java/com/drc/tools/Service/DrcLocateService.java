@@ -8,20 +8,20 @@ import android.util.Log;
 
 import com.drc.tools.Common.DrcLocation;
 
-public class LocateService extends Service {
-    private final static String TAG = "LocateService";
+public class DrcLocateService extends Service {
+    private final static String TAG = "DrcLocateService";
 
     private DrcLocation drcLocation = new DrcLocation();
 
     public static void Drcstart(Context context) {
         //Log.i(TAG, "startService: ok");
-        Intent serStart = new Intent(context, LocateService.class);
+        Intent serStart = new Intent(context, DrcLocateService.class);
         context.startService(serStart);
     }
 
     public static void Drcstop(Context context) {
         //Log.i(TAG, "stopService: ok");
-        Intent serStop = new Intent(context, LocateService.class);
+        Intent serStop = new Intent(context, DrcLocateService.class);
         context.stopService(serStop);
     }
 

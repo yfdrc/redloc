@@ -11,8 +11,8 @@ import android.os.SystemClock;
 
 import com.drc.tools.Common.DrcLocation;
 
-public class LongRunningService extends Service {
-    private final static String TAG = "LongRunningService";
+public class DrcLongRunningService extends Service {
+    private final static String TAG = "DrcLongRunningService";
 
     private final static int MIN10 = 1000 * 60 * 10;
     private final static int MIN60 = 1000 * 60 * 60;
@@ -21,12 +21,12 @@ public class LongRunningService extends Service {
     private static DrcLocation drcLocation = null;
 
     public static void Drcstart(Context context) {
-        Intent intent = new Intent(context, LongRunningService.class);
+        Intent intent = new Intent(context, DrcLongRunningService.class);
         context.startService(intent);
     }
 
     public static void Drcstop(Context context) {
-        Intent intent = new Intent(context, LongRunningService.class);
+        Intent intent = new Intent(context, DrcLongRunningService.class);
         context.stopService(intent);
     }
 
@@ -49,7 +49,7 @@ public class LongRunningService extends Service {
         }
         long triggertime = SystemClock.elapsedRealtime() + sj;
 
-        Intent intenttem = new Intent(this, LongRunningService.class);
+        Intent intenttem = new Intent(this, DrcLongRunningService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intenttem, 0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);

@@ -41,13 +41,13 @@
             android:enabled="true"
             android:process=":remote" />
         <service
-            android:name="com.drc.tools.Service.LocateService"
+            android:name="com.drc.tools.Service.DrcLocateService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
 
         <receiver
-            android:name=".tools.BootCompleteReceiver"
+            android:name="com.drc.tools.Broadcast.DrcBootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -56,7 +56,7 @@
         </receiver>
 
         <service
-            android:name="com.drc.tools.Service.LongRunningService"
+            android:name="com.drc.tools.Service.DrcLongRunningService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />

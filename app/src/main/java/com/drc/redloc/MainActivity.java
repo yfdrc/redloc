@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.drc.tools.Common.DrcPermissions;
-import com.drc.tools.Service.LongRunningService;
+import com.drc.tools.Service.DrcLongRunningService;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "DrcMainActivity";
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, perms, RCODE);
         }
 
-        LongRunningService.Drcstart(this);
+        DrcLongRunningService.Drcstart(this);
         finish();
     }
 
