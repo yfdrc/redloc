@@ -19,44 +19,44 @@ public class BaseService extends Service {
         }
 
         public int getProgress() {
-            Log.i(TAG, "getProgress: ok");
+            //Log.i(TAG, "getProgress: ok");
             return 0;
         }
     }
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy: ok");
+        //Log.i(TAG, "onDestroy: ok");
         super.onDestroy();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "onStartCommand: ok");
+        //Log.i(TAG, "onStartCommand: ok");
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "onCreate: ok");
+        //Log.i(TAG, "onCreate: ok");
         super.onCreate();
     }
 
     @Override
     public void onRebind(Intent intent) {
-        Log.i(TAG, "onRebind: ok");
+        //Log.i(TAG, "onRebind: ok");
         super.onRebind(intent);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "onBind: ok");
+        //Log.i(TAG, "onBind: ok");
         return basebinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.i(TAG, "onUnbind: ok");
+        //Log.i(TAG, "onUnbind: ok");
         return super.onUnbind(intent);
     }
 }

@@ -29,7 +29,7 @@ public class BaseDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.i(TAG, "onCreate: ok");
+        //Log.i(TAG, "onCreate: ok");
         db.execSQL(CREATEBOOK);
         db.execSQL(CREATECATEGORY);
         db.execSQL(CREATETEST);
@@ -37,7 +37,7 @@ public class BaseDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.i(TAG, "onUpgrade: ok");
+        //Log.i(TAG, "onUpgrade: ok");
         db.execSQL("drop table if exists Book");
         db.execSQL("drop table if exists Category");
         db.execSQL("drop table if exists Test");

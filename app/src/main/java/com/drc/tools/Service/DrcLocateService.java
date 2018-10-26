@@ -27,7 +27,7 @@ public class DrcLocateService extends Service {
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "onCreate: ok");
+        //Log.i(TAG, "onCreate: ok");
         super.onCreate();
         drcLocation.start(getBaseContext());
         drcLocation.requestLocation();
@@ -45,7 +45,7 @@ public class DrcLocateService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy: ok");
+        //Log.i(TAG, "onDestroy: ok");
         super.onDestroy();
         //releaseWakeLock();
     }

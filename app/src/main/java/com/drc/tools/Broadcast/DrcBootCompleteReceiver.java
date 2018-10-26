@@ -12,7 +12,7 @@ public class DrcBootCompleteReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i(TAG, "onReceive: ok");
+        //Log.i(TAG, "onReceive: ok");
         DrcLongRunningService.Drcstart(context);
     }
 }
