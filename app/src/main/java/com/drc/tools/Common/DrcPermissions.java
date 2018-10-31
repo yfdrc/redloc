@@ -19,9 +19,11 @@ import java.util.List;
 import java.util.Properties;
 
 public class DrcPermissions {
+    public static int RCODE = 323;
+
     private final static String TAG = "DrcPermissions";
 
-    public static void onRequestPermissions(Context context, Activity activity, int[] grantResults, int requestCode, final int RCODE) {
+    public static void onRequestPermissions(Context context, Activity activity, int[] grantResults, int requestCode) {
         if (requestCode == RCODE) {
             if (grantResults.length > 0) {
                 for (int result : grantResults) {
@@ -38,10 +40,10 @@ public class DrcPermissions {
         }
     }
 
-    public static void requestPermissions(Context context, Activity activity, int RCODE) {
+    public static void requestPermissions(Context context, Activity activity) {
         String[] perms = getPermissions(context);
         if (perms != null) {
-            ActivityCompat.requestPermissions(activity, perms, RCODE);
+            ActivityCompat.requestPermissions(activity, perms,RCODE);
         }
     }
 

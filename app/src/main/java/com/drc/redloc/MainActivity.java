@@ -12,17 +12,15 @@ import com.drc.tools.Service.DrcLongRunningService;
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "DrcMainActivity";
 
-    private static final int RCODE = 323;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Log.i(TAG, "onCreate:ok");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DrcPermissions.requestPermissions(this, this, RCODE);
-        DrcLongRunningService.Drcstart(this);
-        finish();
+        DrcPermissions.requestPermissions(this, this);
+        //DrcLongRunningService.Drcstart(this);
+        //finish();
     }
 
     @Override
@@ -35,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //Log.i(TAG, "onRequestPermissionsResult: ok");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        DrcPermissions.onRequestPermissions(this, this, grantResults, requestCode, RCODE);
+        DrcPermissions.onRequestPermissions(this, this, grantResults, requestCode);
 
     }
 }
