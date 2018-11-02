@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.util.TimeUtils;
 
 import com.drc.tools.Base.BaseDatabase;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class DrcDB {
     private static final String TAG = "DrcDB";
@@ -14,12 +18,12 @@ public class DrcDB {
     private SQLiteDatabase db = null;
     private String tablename = null;
 
-    public DrcDB(String DBname, String Tablename, Context context, int ver) {
+    public DrcDB(Context context, String dbName, String tableName, int version) {
         if(dbhelper==null || db==null) {
             Log.i(TAG, "DrcDB: init");
-            dbhelper = new BaseDatabase(context, DBname, ver);
+            dbhelper = new BaseDatabase(context, dbName, version);
             db = dbhelper.getWritableDatabase();
-            tablename = Tablename;
+            tablename = tableName;
         }else{
             Log.i(TAG, "DrcDB: ok");
         }
@@ -27,23 +31,24 @@ public class DrcDB {
 
     public void AddTable() {
         ContentValues values = new ContentValues();
-        values.put("name", "yfqx");
-        values.put("auth", "drc");
-        values.put("pages", "323");
-        values.put("price", "2.2");
+        values.put("name", "drc");
+        values.put("neirong", "i am a man!");
+        values.put("memo", "memo");
+        values.put("ver", "1.0");
         db.insert(tablename,null, values);
         values.clear();
     }
 
     public void UpdateTable() {
         ContentValues values = new ContentValues();
-        values.put("price", "3.3");
-        db.update(tablename, values,"name=?", new String[]{"yfqx"});
+        values.put("name", "red");
+        values.put("neirong", "I'm a man!");
+        db.update(tablename, values,"name=?", new String[]{"drc"});
     }
 
     public void DeleteTable() {
         ContentValues values = new ContentValues();
-        db.delete(tablename,"price>=?", new String[]{"3"});
+        db.delete(tablename,"ver>=?", new String[]{"1"});
     }
 
     public void ReadTable() {
@@ -51,8 +56,8 @@ public class DrcDB {
         if(cursor.moveToFirst()){
             do{
                 String name =cursor.getString(cursor.getColumnIndex("name"));
-                Float price =cursor.getFloat(cursor.getColumnIndex("price"));
-                Log.i(TAG, "ReadTable: name=" + name + " price=" + price.toString());
+                String neirong =cursor.getString(cursor.getColumnIndex("neirong"));
+                Log.i(TAG, "ReadTable: name=" + name + " neirong=" + neirong.toString());
             }while (cursor.moveToNext());
         }
         cursor.close();

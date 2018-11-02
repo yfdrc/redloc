@@ -12,7 +12,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AesUtils {
+public class Aes {
     private static final int KEY_LENGTH = 256;
     private static final int SALT_LENGTH = KEY_LENGTH / 8;
     private static final String PBK_DF2_HmacSHA1 = "PBKDF2WithHmacSHA1";

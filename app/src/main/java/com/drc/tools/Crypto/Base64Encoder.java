@@ -150,7 +150,7 @@ public class Base64Encoder extends FilterOutputStream {
      * @return the encoded form of the unencoded string
      * @throws IOException
      */
-    public static String encode(byte[] bytes, boolean isWrapBreak) {
+    private static String encode(byte[] bytes, boolean isWrapBreak) {
         ByteArrayOutputStream out = new ByteArrayOutputStream((int) (bytes.length * 1.4));
         Base64Encoder encodedOut = new Base64Encoder(out, isWrapBreak);
         try {
@@ -167,28 +167,4 @@ public class Base64Encoder extends FilterOutputStream {
         return out.toString();
     }
 
-    // public static void main(String[] args) throws Exception {
-    // if (args.length != 1) {
-    // System.err
-    // .println("Usage: java com.oreilly.servlet.Base64Encoder fileToEncode");
-    // return;
-    // }
-    // Base64Encoder encoder = null;
-    // BufferedInputStream in = null;
-    // try {
-    // encoder = new Base64Encoder(System.out);
-    // in = new BufferedInputStream(new FileInputStream(args[0]));
-    //
-    // byte[] buf = new byte[4 * 1024]; // 4K buffer
-    // int bytesRead;
-    // while ((bytesRead = in.read(buf)) != -1) {
-    // encoder.write(buf, 0, bytesRead);
-    // }
-    // } finally {
-    // if (in != null)
-    // in.close();
-    // if (encoder != null)
-    // encoder.close();
-    // }
-    // }
 }

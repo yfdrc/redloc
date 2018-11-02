@@ -1,14 +1,13 @@
 package com.drc.redloc;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import com.drc.tools.Common.DrcPermissions;
-import com.drc.tools.Crypto.TestCrypto;
-import com.drc.tools.Service.DrcLongRunningService;
+import com.drc.tools.Database.DrcDB;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "DrcMainActivity";
@@ -23,7 +22,37 @@ public class MainActivity extends AppCompatActivity {
         //DrcLongRunningService.Drcstart(this);
         //finish();
 
-        TestCrypto.Test();
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+
+        final DrcDB db = new DrcDB(this, "drc", "system", 1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.AddTable();
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.UpdateTable();
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.DeleteTable();
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.ReadTable();
+            }
+        });
+
     }
 
     @Override
