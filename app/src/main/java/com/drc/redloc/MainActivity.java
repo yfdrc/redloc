@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.drc.tools.Common.DrcPermissions;
+import com.drc.tools.Crypto.TestCrypto;
 import com.drc.tools.Service.DrcLongRunningService;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         DrcPermissions.requestPermissions(this, this);
         //DrcLongRunningService.Drcstart(this);
         //finish();
+
+        TestCrypto.Test();
     }
 
     @Override
