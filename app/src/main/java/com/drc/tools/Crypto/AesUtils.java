@@ -2,7 +2,6 @@ package com.drc.tools.Crypto;
 
 import android.util.Log;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 
@@ -20,51 +19,68 @@ public class AesUtils {
     private static final String AES = "AES";                                        //AES 加密
     private static final String SHA1PRNG = "SHA1PRNG";                            // SHA1PRNG 强随机种子算法, 要区别4.2以上版本的调用方法
 
-    /*
-     * 生成随机数，可以当做动态的密钥 加密和解密的密钥必须一致，不然将不能解密
-     */
     public static String generateKey() {
         try {
             SecureRandom localSecureRandom = SecureRandom.getInstance(SHA1PRNG);
             byte[] bytes_key = new byte[20];
             localSecureRandom.nextBytes(bytes_key);
-            String str_key = toHex(bytes_key);
+            String str_key = toHexString(bytes_key);
             return str_key;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("drc", "generateKey: error");
         }
         return null;
     }
 
-    public static byte[] getSalt(int length) {
+    public static byte[] generateSalt(int length) {
         byte[] salt = null;
         try {
             SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
             salt = new byte[length];
             sr.nextBytes(salt);
         } catch (Exception ex) {
+            Log.e("drc", "generateSalt: error");
         }
         return salt;
     }
 
-    // 对密钥进行处理
-    public static byte[] getRawKey(String password) {
-        SecretKey key=null;
-        try {
-            /* Store these things on disk used to derive key later: */
-            int iterationCount = 1000;
-            int keyLength = 256; // 256-bits for AES-256, 128-bits for AES-128, etc
-            int saltLength = 32; // bytes; should be the same size as the output (256 / 8 = 32)
-            byte[] salt = getSalt(saltLength); // Should be of saltLength
+    public static byte[] ReadSalt(String saltStr) {
 
-            /* Use this to derive the key from the password: */
-            KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt,
-                    iterationCount, keyLength);
-            SecretKeyFactory keyFactory = SecretKeyFactory
-                    .getInstance(PBK_DF2_HmacSHA1);
+        String hexString = saltStr.toLowerCase();
+        final byte[] byteArray = new byte[hexString.length() / 2];
+        int k = 0;
+        for (int i = 0; i < byteArray.length; i++) {
+            //因为是16进制，最多只会占用4位，转换成字节需要两个16进制的字符，高位在先
+            byte high = (byte) (Character.digit(hexString.charAt(k), 16) & 0xff);
+            byte low = (byte) (Character.digit(hexString.charAt(k + 1), 16) & 0xff);
+            byteArray[i] = (byte) (high << 4 | low);
+            k += 2;
+        }
+        return byteArray;
+    }
+
+    public static String SaveSalt(byte[] salt) {
+        final StringBuilder hexString = new StringBuilder();
+        for (int i = 0; i < salt.length; i++) {
+            if ((salt[i] & 0xff) < 0x10)
+                //0~F前面补零
+                hexString.append("0");
+            hexString.append(Integer.toHexString(0xFF & salt[i]));
+        }
+        return hexString.toString().toLowerCase();
+    }
+
+    public static byte[] getRawKey(String password, byte[] salt) {
+        SecretKey key = null;
+        try {
+            int iterationCount = 1000;
+            int keyLength = 256;
+            KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, iterationCount, keyLength);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(PBK_DF2_HmacSHA1);
             byte[] keyBytes = keyFactory.generateSecret(keySpec).getEncoded();
             key = new SecretKeySpec(keyBytes, AES);
-        }catch (Exception ex){}
+        } catch (Exception ex) {
+        }
         return key.getEncoded();
     }
 
@@ -81,7 +97,6 @@ public class AesUtils {
             return Base64Encoder.encode(result);
         } catch (Exception e) {
             Log.e("drc", "encrypt: error");
-            ;
         }
         return null;
     }
@@ -99,22 +114,21 @@ public class AesUtils {
             return new String(result);
         } catch (Exception e) {
             Log.e("drc", "decrypt:" + e.toString());
-            ;
         }
         return null;
     }
 
-    public static String toHex(byte[] buf) {
+    public static String toHexString(byte[] buf) {
         if (buf == null)
             return "";
         StringBuffer result = new StringBuffer(2 * buf.length);
         for (int i = 0; i < buf.length; i++) {
-            appendHex(result, buf[i]);
+            addHexString(result, buf[i]);
         }
         return result.toString();
     }
 
-    private static void appendHex(StringBuffer sb, byte b) {
+    private static void addHexString(StringBuffer sb, byte b) {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
 }
