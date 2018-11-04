@@ -1,4 +1,5 @@
-package com.drc.tools.Service;
+
+package com.drc.redloc.Service;
 
 import android.app.Service;
 import android.content.Context;
@@ -6,12 +7,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.drc.tools.Common.DrcLocation;
+import com.drc.tools.Location.DrcLocation;
 
 public class DrcLocateService extends Service {
     private final static String TAG = "DrcLocateService";
-
-    private DrcLocation drcLocation = new DrcLocation();
 
     public static void Drcstart(Context context) {
         //Log.i(TAG, "startService: ok");
@@ -27,11 +26,10 @@ public class DrcLocateService extends Service {
 
     @Override
     public void onCreate() {
-        //Log.i(TAG, "onCreate: ok");
+        Log.i(TAG, "onCreate: ok");
         super.onCreate();
-        drcLocation.start(getBaseContext());
-        drcLocation.requestLocation();
-        //acquireWakeLock(this);
+        //drcLocation.start(getBaseContext());
+        //drcLocation.requestLocation();
     }
 
     @Override
@@ -45,7 +43,7 @@ public class DrcLocateService extends Service {
 
     @Override
     public void onDestroy() {
-        //Log.i(TAG, "onDestroy: ok");
+        Log.i(TAG, "onDestroy: ok");
         super.onDestroy();
         //releaseWakeLock();
     }
