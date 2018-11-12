@@ -7,18 +7,24 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.drc.tools.Common.DrcThread;
 import com.drc.tools.Location.DrcLocation;
 
 public class DrcLocateService extends Service {
     private final static String TAG = "DrcLocateService";
+    private static Context context = null;
+    private static DrcLocation drcLocation = null;
+    private static DrcThread drcThread = null;
 
-    public static void Drcstart(Context context) {
-        //Log.i(TAG, "startService: ok");
+    public static void Drcstart(Context mContext) {
+        Log.i(TAG, "startService: ok");
+        context = mContext;
+        drcThread = new DrcThread();
         Intent serStart = new Intent(context, DrcLocateService.class);
         context.startService(serStart);
     }
 
-    public static void Drcstop(Context context) {
+    public static void Drcstop() {
         //Log.i(TAG, "stopService: ok");
         Intent serStop = new Intent(context, DrcLocateService.class);
         context.stopService(serStop);
@@ -27,25 +33,22 @@ public class DrcLocateService extends Service {
     @Override
     public void onCreate() {
         Log.i(TAG, "onCreate: ok");
+        if(drcLocation==null) drcLocation = new DrcLocation(context);
         super.onCreate();
-        //drcLocation.start(getBaseContext());
-        //drcLocation.requestLocation();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //Log.i(TAG, "onStartCommand: ok");
-//        Notification notification = new NotificationCompat.Builder(this, "default")
-//                .setPriority(Notification.PRIORITY_MIN).build();
-//        startForeground(1, notification);
+        Log.i(TAG, "onStartCommand: ok");
+        drcThread.start(drcLocation);
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         Log.i(TAG, "onDestroy: ok");
+        drcLocation.stop();
         super.onDestroy();
-        //releaseWakeLock();
     }
 
     @Override

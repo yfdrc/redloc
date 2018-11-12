@@ -4,6 +4,7 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Log.i(TAG, "onCreate:ok");
+        Log.i(TAG, "onCreate:ok");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DrcLocateService.Drcstart(v.getContext());
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        //Log.i(TAG, "onDestroy: ok");
+        Log.d(TAG, "onDestroy: ok");
         super.onDestroy();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //Log.i(TAG, "onRequestPermissionsResult: ok");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         DrcPermissions.onRequestPermissions(this, this, grantResults, requestCode);
 

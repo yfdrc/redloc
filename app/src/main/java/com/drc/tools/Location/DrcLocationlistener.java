@@ -19,6 +19,7 @@ class DrcLocationlistener extends BDAbstractLocationListener {
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
+        Log.d(TAG, "onReceiveLocation");
         StringBuilder sb = new StringBuilder();
         sb.append("更新时间：").append(Calendar.getInstance().getTime().toString()).append("\n");
         sb.append("维度：").append(bdLocation.getLatitude()).append("\n");

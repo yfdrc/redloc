@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.drc.redloc"
         minSdkVersion 26
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -13,10 +14,10 @@ android {
 
     signingConfigs {
         drcConfig {
-            keyAlias 'drc'
-            keyPassword 'drcred'
-            storeFile file('D:/Backup/Documents/AndroidStudioProjects/drcsigned.jks')
-            storePassword 'red123'
+            keyAlias 'keyred'
+            keyPassword 'red123456'
+            storeFile file('../drc.jks')
+            storePassword 'DRCred123456'
         }
     }
 
@@ -31,7 +32,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

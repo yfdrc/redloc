@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DrcLocation extends BaseApplication {
 
-    private static String TAG = "DrcLocateService";
+    private static String TAG = "DrcLocation";
     private LocationClient locationClient = null;
     private LocationClientOption mOption, DIYoption;
     private Object objLock = new Object();
@@ -23,6 +23,7 @@ public class DrcLocation extends BaseApplication {
 
     public DrcLocation(Context context) {
         synchronized (objLock) {
+            Log.d(TAG,"DrcLocation");
             if (locationClient == null) {
                 locationClient = new LocationClient(context);
                 drcLocationlistener = new DrcLocationlistener(context);
@@ -33,6 +34,7 @@ public class DrcLocation extends BaseApplication {
 
     public void start() {
         synchronized (objLock) {
+            Log.d(TAG,"start");
             if (locationClient != null && !locationClient.isStarted()) {
                 registerListener(drcLocationlistener);
                 locationClient.start();
@@ -66,6 +68,7 @@ public class DrcLocation extends BaseApplication {
     }
 
     public boolean registerListener(BDAbstractLocationListener listener) {
+        Log.d(TAG,"registerListener");
         boolean isSuccess = false;
         if (listener != null) {
             locationClient.registerLocationListener(listener);
@@ -81,6 +84,7 @@ public class DrcLocation extends BaseApplication {
     }
 
     public boolean setLocationOption(LocationClientOption option) {
+        Log.d(TAG,"setLocationOption");
         boolean isSuccess = false;
         if (option != null) {
             if (locationClient.isStarted())
@@ -100,7 +104,7 @@ public class DrcLocation extends BaseApplication {
             mOption = new LocationClientOption();
             mOption.setLocationMode(LocationMode.Hight_Accuracy);  //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
             mOption.setCoorType("bd09ll");           //可选，默认gcj02，设置返回的定位结果坐标系，如果配合百度地图使用，建议设置为bd09ll;
-            mOption.setScanSpan(3000);                //可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+            mOption.setScanSpan(6000);                //可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
             mOption.setIsNeedAddress(true);          //可选，设置是否需要地址信息，默认不需要
             mOption.setIsNeedLocationDescribe(true); //可选，设置是否需要地址描述
             mOption.setNeedDeviceDirect(false);      //可选，设置是否需要设备方向结果
