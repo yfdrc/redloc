@@ -40,25 +40,25 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add noti" />
+            android:text="delete channel" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="start mainActi" />
+            android:text="add notifytext" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="start Service" />
+            android:text="start repeat alarm" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button5" />
+            android:text="stop repeat alarm" />
 
     </LinearLayout>
 

@@ -15,7 +15,7 @@ public class BaseService extends Service {
 
     protected class BaseBinder extends Binder {
         public void startDownload() {
-            Log.i(TAG, "startDownload: ok");
+            //Log.i(TAG, "startDownload: ok");
         }
 
         public int getProgress() {

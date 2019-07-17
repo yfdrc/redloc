@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.drc.redloc">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -40,8 +41,9 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
         <service
-            android:name=".Service.DrcLocateService"
+            android:name="com.drc.tools.Service.DrcLocateService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
@@ -55,11 +57,11 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".Service.DrcLongRunningService"
+        <receiver
+            android:name="com.drc.tools.Broadcast.DrcAlarmReceiver"
             android:enabled="true"
-            android:exported="true"
-            android:process=":remote" />
+            android:exported="true">
+        </receiver>
     </application>
 
 </manifest>
